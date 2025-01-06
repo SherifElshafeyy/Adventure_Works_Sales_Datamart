@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<!DOCTYPE POWERMART SYSTEM "powrmart.dtd">
+<POWERMART CREATION_DATE="01/06/2025 21:36:33" REPOSITORY_VERSION="187.96">
+<REPOSITORY NAME="rep" VERSION="187" CODEPAGE="MS1252" DATABASETYPE="Oracle">
+<FOLDER NAME="Adventure_Works_DWH" GROUP="" OWNER="Administrator" SHARED="NOTSHARED" DESCRIPTION="" PERMISSIONS="rwx---r--" UUID="e4281b6e-b1fd-4b4c-af8a-56c1fb19e937">
+    <SOURCE BUSINESSNAME ="" DATABASETYPE ="Flat File" DBDNAME ="FlatFile" DESCRIPTION ="" NAME ="dim_date_table" OBJECTVERSION ="1" OWNERNAME ="" VERSIONNUMBER ="1">
+        <FLATFILE CODEPAGE ="MS1252" CONSECDELIMITERSASONE ="NO" DELIMITED ="YES" DELIMITERS ="," ESCAPE_CHARACTER ="" KEEPESCAPECHAR ="NO" LINESEQUENTIAL ="NO" MULTIDELIMITERSASAND ="YES" NULLCHARTYPE ="ASCII" NULL_CHARACTER ="*" PADBYTES ="1" QUOTE_CHARACTER ="DOUBLE" REPEATABLE ="NO" ROWDELIMITER ="0" SHIFTSENSITIVEDATA ="NO" SKIPROWS ="1" STRIPTRAILINGBLANKS ="NO"/>
+        <TABLEATTRIBUTE NAME ="Base Table Name" VALUE =""/>
+        <TABLEATTRIBUTE NAME ="Search Specification" VALUE =""/>
+        <TABLEATTRIBUTE NAME ="Sort Specification" VALUE =""/>
+        <TABLEATTRIBUTE NAME ="Datetime Format" VALUE ="A  19 mm/dd/yyyy hh24:mi:ss"/>
+        <TABLEATTRIBUTE NAME ="Thousand Separator" VALUE ="None"/>
+        <TABLEATTRIBUTE NAME ="Decimal Separator" VALUE ="."/>
+        <TABLEATTRIBUTE NAME ="Add Currently Processed Flat File Name Port" VALUE ="NO"/>
+        <TABLEATTRIBUTE NAME ="Source TimeStamp" VALUE =""/>
+        <SOURCEFIELD BUSINESSNAME ="" DATATYPE ="string" DESCRIPTION ="" FIELDNUMBER ="1" FIELDPROPERTY ="0" FIELDTYPE ="ELEMITEM" HIDDEN ="NO" KEYTYPE ="NOT A KEY" LENGTH ="10" LEVEL ="0" NAME ="full_date" NULLABLE ="NULL" OCCURS ="0" OFFSET ="0" PHYSICALLENGTH ="10" PHYSICALOFFSET ="0" PICTURETEXT ="" PRECISION ="10" SCALE ="0" USAGE_FLAGS =""/>
+        <SOURCEFIELD BUSINESSNAME ="" DATATYPE ="number" DESCRIPTION ="" FIELDNUMBER ="2" FIELDPROPERTY ="0" FIELDTYPE ="ELEMITEM" HIDDEN ="NO" KEYTYPE ="NOT A KEY" LENGTH ="8" LEVEL ="0" NAME ="date_key" NULLABLE ="NULL" OCCURS ="0" OFFSET ="10" PHYSICALLENGTH ="8" PHYSICALOFFSET ="10" PICTURETEXT ="" PRECISION ="8" SCALE ="0" USAGE_FLAGS =""/>
+        <SOURCEFIELD BUSINESSNAME ="" DATATYPE ="number" DESCRIPTION ="" FIELDNUMBER ="3" FIELDPROPERTY ="0" FIELDTYPE ="ELEMITEM" HIDDEN ="NO" KEYTYPE ="NOT A KEY" LENGTH ="4" LEVEL ="0" NAME ="calendar_year" NULLABLE ="NULL" OCCURS ="0" OFFSET ="18" PHYSICALLENGTH ="4" PHYSICALOFFSET ="18" PICTURETEXT ="" PRECISION ="4" SCALE ="0" USAGE_FLAGS =""/>
+        <SOURCEFIELD BUSINESSNAME ="" DATATYPE ="number" DESCRIPTION ="" FIELDNUMBER ="4" FIELDPROPERTY ="0" FIELDTYPE ="ELEMITEM" HIDDEN ="NO" KEYTYPE ="NOT A KEY" LENGTH ="1" LEVEL ="0" NAME ="calendar_quarter" NULLABLE ="NULL" OCCURS ="0" OFFSET ="22" PHYSICALLENGTH ="1" PHYSICALOFFSET ="22" PICTURETEXT ="" PRECISION ="1" SCALE ="0" USAGE_FLAGS =""/>
+        <SOURCEFIELD BUSINESSNAME ="" DATATYPE ="number" DESCRIPTION ="" FIELDNUMBER ="5" FIELDPROPERTY ="0" FIELDTYPE ="ELEMITEM" HIDDEN ="NO" KEYTYPE ="NOT A KEY" LENGTH ="2" LEVEL ="0" NAME ="calendar_month_num" NULLABLE ="NULL" OCCURS ="0" OFFSET ="23" PHYSICALLENGTH ="2" PHYSICALOFFSET ="23" PICTURETEXT ="" PRECISION ="2" SCALE ="0" USAGE_FLAGS =""/>
+        <SOURCEFIELD BUSINESSNAME ="" DATATYPE ="string" DESCRIPTION ="" FIELDNUMBER ="6" FIELDPROPERTY ="0" FIELDTYPE ="ELEMITEM" HIDDEN ="NO" KEYTYPE ="NOT A KEY" LENGTH ="9" LEVEL ="0" NAME ="calendar_month_name" NULLABLE ="NULL" OCCURS ="0" OFFSET ="25" PHYSICALLENGTH ="9" PHYSICALOFFSET ="25" PICTURETEXT ="" PRECISION ="9" SCALE ="0" USAGE_FLAGS =""/>
+    </SOURCE>
+    <TARGET BUSINESSNAME ="" CONSTRAINT ="" DATABASETYPE ="Microsoft SQL Server" DESCRIPTION ="" NAME ="dim_date" OBJECTVERSION ="1" TABLEOPTIONS ="" VERSIONNUMBER ="1">
+        <TARGETFIELD BUSINESSNAME ="" DATATYPE ="int" DESCRIPTION ="" FIELDNUMBER ="1" KEYTYPE ="PRIMARY KEY" NAME ="date_key" NULLABLE ="NOTNULL" PICTURETEXT ="" PRECISION ="10" SCALE ="0"/>
+        <TARGETFIELD BUSINESSNAME ="" DATATYPE ="nvarchar" DESCRIPTION ="" FIELDNUMBER ="2" KEYTYPE ="NOT A KEY" NAME ="full_date" NULLABLE ="NOTNULL" PICTURETEXT ="" PRECISION ="10" SCALE ="0"/>
+        <TARGETFIELD BUSINESSNAME ="" DATATYPE ="int" DESCRIPTION ="" FIELDNUMBER ="3" KEYTYPE ="NOT A KEY" NAME ="calendar_year" NULLABLE ="NOTNULL" PICTURETEXT ="" PRECISION ="10" SCALE ="0"/>
+        <TARGETFIELD BUSINESSNAME ="" DATATYPE ="int" DESCRIPTION ="" FIELDNUMBER ="4" KEYTYPE ="NOT A KEY" NAME ="calendar_quarter" NULLABLE ="NOTNULL" PICTURETEXT ="" PRECISION ="10" SCALE ="0"/>
+        <TARGETFIELD BUSINESSNAME ="" DATATYPE ="int" DESCRIPTION ="" FIELDNUMBER ="5" KEYTYPE ="NOT A KEY" NAME ="calendar_month_num" NULLABLE ="NOTNULL" PICTURETEXT ="" PRECISION ="10" SCALE ="0"/>
+        <TARGETFIELD BUSINESSNAME ="" DATATYPE ="nvarchar" DESCRIPTION ="" FIELDNUMBER ="6" KEYTYPE ="NOT A KEY" NAME ="calendar_month_name" NULLABLE ="NOTNULL" PICTURETEXT ="" PRECISION ="15" SCALE ="0"/>
+    </TARGET>
+    <MAPPING DESCRIPTION ="" ISVALID ="YES" NAME ="M_Dim_Date" OBJECTVERSION ="1" VERSIONNUMBER ="1">
+        <TRANSFORMATION DESCRIPTION ="" NAME ="SQ_dim_date_table" OBJECTVERSION ="1" REUSABLE ="NO" TYPE ="Source Qualifier" VERSIONNUMBER ="1">
+            <TRANSFORMFIELD DATATYPE ="string" DEFAULTVALUE ="" DESCRIPTION ="" NAME ="full_date" PICTURETEXT ="" PORTTYPE ="INPUT/OUTPUT" PRECISION ="10" SCALE ="0"/>
+            <TRANSFORMFIELD DATATYPE ="decimal" DEFAULTVALUE ="" DESCRIPTION ="" NAME ="date_key" PICTURETEXT ="" PORTTYPE ="INPUT/OUTPUT" PRECISION ="8" SCALE ="0"/>
+            <TRANSFORMFIELD DATATYPE ="decimal" DEFAULTVALUE ="" DESCRIPTION ="" NAME ="calendar_year" PICTURETEXT ="" PORTTYPE ="INPUT/OUTPUT" PRECISION ="4" SCALE ="0"/>
+            <TRANSFORMFIELD DATATYPE ="decimal" DEFAULTVALUE ="" DESCRIPTION ="" NAME ="calendar_quarter" PICTURETEXT ="" PORTTYPE ="INPUT/OUTPUT" PRECISION ="1" SCALE ="0"/>
+            <TRANSFORMFIELD DATATYPE ="decimal" DEFAULTVALUE ="" DESCRIPTION ="" NAME ="calendar_month_num" PICTURETEXT ="" PORTTYPE ="INPUT/OUTPUT" PRECISION ="2" SCALE ="0"/>
+            <TRANSFORMFIELD DATATYPE ="string" DEFAULTVALUE ="" DESCRIPTION ="" NAME ="calendar_month_name" PICTURETEXT ="" PORTTYPE ="INPUT/OUTPUT" PRECISION ="9" SCALE ="0"/>
+            <TABLEATTRIBUTE NAME ="Sql Query" VALUE =""/>
+            <TABLEATTRIBUTE NAME ="User Defined Join" VALUE =""/>
+            <TABLEATTRIBUTE NAME ="Source Filter" VALUE =""/>
+            <TABLEATTRIBUTE NAME ="Number Of Sorted Ports" VALUE ="0"/>
+            <TABLEATTRIBUTE NAME ="Tracing Level" VALUE ="Normal"/>
+            <TABLEATTRIBUTE NAME ="Select Distinct" VALUE ="NO"/>
+            <TABLEATTRIBUTE NAME ="Is Partitionable" VALUE ="NO"/>
+            <TABLEATTRIBUTE NAME ="Pre SQL" VALUE =""/>
+            <TABLEATTRIBUTE NAME ="Post SQL" VALUE =""/>
+            <TABLEATTRIBUTE NAME ="Output is deterministic" VALUE ="NO"/>
+            <TABLEATTRIBUTE NAME ="Output is repeatable" VALUE ="Never"/>
+        </TRANSFORMATION>
+        <TRANSFORMATION DESCRIPTION ="" NAME ="LKPTRANS" OBJECTVERSION ="1" REUSABLE ="NO" TYPE ="Lookup Procedure" VERSIONNUMBER ="1">
+            <TRANSFORMFIELD DATATYPE ="integer" DEFAULTVALUE ="" DESCRIPTION ="" NAME ="date_key" PICTURETEXT ="" PORTTYPE ="LOOKUP/OUTPUT" PRECISION ="10" SCALE ="0"/>
+            <TRANSFORMFIELD DATATYPE ="nstring" DEFAULTVALUE ="" DESCRIPTION ="" NAME ="full_date" PICTURETEXT ="" PORTTYPE ="LOOKUP/OUTPUT" PRECISION ="10" SCALE ="0"/>
+            <TRANSFORMFIELD DATATYPE ="string" DEFAULTVALUE ="" DESCRIPTION ="" NAME ="full_date1" PICTURETEXT ="" PORTTYPE ="INPUT/OUTPUT" PRECISION ="10" SCALE ="0"/>
+            <TABLEATTRIBUTE NAME ="Lookup Sql Override" VALUE =""/>
+            <TABLEATTRIBUTE NAME ="Lookup table name" VALUE ="dim_date"/>
+            <TABLEATTRIBUTE NAME ="Lookup Source Filter" VALUE =""/>
+            <TABLEATTRIBUTE NAME ="Lookup caching enabled" VALUE ="YES"/>
+            <TABLEATTRIBUTE NAME ="Lookup policy on multiple match" VALUE ="Use Any Value"/>
+            <TABLEATTRIBUTE NAME ="Lookup condition" VALUE ="full_date = full_date1"/>
+            <TABLEATTRIBUTE NAME ="Connection Information" VALUE ="$Target"/>
+            <TABLEATTRIBUTE NAME ="Source Type" VALUE ="Database"/>
+            <TABLEATTRIBUTE NAME ="Recache if Stale" VALUE ="NO"/>
+            <TABLEATTRIBUTE NAME ="Tracing Level" VALUE ="Normal"/>
+            <TABLEATTRIBUTE NAME ="Lookup cache directory name" VALUE ="$PMCacheDir"/>
+            <TABLEATTRIBUTE NAME ="Lookup cache initialize" VALUE ="NO"/>
+            <TABLEATTRIBUTE NAME ="Lookup cache persistent" VALUE ="NO"/>
+            <TABLEATTRIBUTE NAME ="Lookup Data Cache Size" VALUE ="Auto"/>
+            <TABLEATTRIBUTE NAME ="Lookup Index Cache Size" VALUE ="Auto"/>
+            <TABLEATTRIBUTE NAME ="Dynamic Lookup Cache" VALUE ="NO"/>
+            <TABLEATTRIBUTE NAME ="Synchronize Dynamic Cache" VALUE ="NO"/>
+            <TABLEATTRIBUTE NAME ="Output Old Value On Update" VALUE ="NO"/>
+            <TABLEATTRIBUTE NAME ="Update Dynamic Cache Condition" VALUE ="TRUE"/>
+            <TABLEATTRIBUTE NAME ="Cache File Name Prefix" VALUE =""/>
+            <TABLEATTRIBUTE NAME ="Re-cache from lookup source" VALUE ="NO"/>
+            <TABLEATTRIBUTE NAME ="Insert Else Update" VALUE ="NO"/>
+            <TABLEATTRIBUTE NAME ="Update Else Insert" VALUE ="NO"/>
+            <TABLEATTRIBUTE NAME ="Datetime Format" VALUE =""/>
+            <TABLEATTRIBUTE NAME ="Thousand Separator" VALUE ="None"/>
+            <TABLEATTRIBUTE NAME ="Decimal Separator" VALUE ="."/>
+            <TABLEATTRIBUTE NAME ="Case Sensitive String Comparison" VALUE ="NO"/>
+            <TABLEATTRIBUTE NAME ="Null ordering" VALUE ="Null Is Highest Value"/>
+            <TABLEATTRIBUTE NAME ="Sorted Input" VALUE ="NO"/>
+            <TABLEATTRIBUTE NAME ="Lookup source is static" VALUE ="NO"/>
+            <TABLEATTRIBUTE NAME ="Pre-build lookup cache" VALUE ="Auto"/>
+            <TABLEATTRIBUTE NAME ="Subsecond Precision" VALUE ="6"/>
+        </TRANSFORMATION>
+        <TRANSFORMATION DESCRIPTION ="" NAME ="UPDTRANS" OBJECTVERSION ="1" REUSABLE ="NO" TYPE ="Update Strategy" VERSIONNUMBER ="1">
+            <TRANSFORMFIELD DATATYPE ="string" DEFAULTVALUE ="" DESCRIPTION ="" NAME ="full_date" PICTURETEXT ="" PORTTYPE ="INPUT/OUTPUT" PRECISION ="10" SCALE ="0"/>
+            <TRANSFORMFIELD DATATYPE ="decimal" DEFAULTVALUE ="" DESCRIPTION ="" NAME ="calendar_year" PICTURETEXT ="" PORTTYPE ="INPUT/OUTPUT" PRECISION ="4" SCALE ="0"/>
+            <TRANSFORMFIELD DATATYPE ="decimal" DEFAULTVALUE ="" DESCRIPTION ="" NAME ="calendar_quarter" PICTURETEXT ="" PORTTYPE ="INPUT/OUTPUT" PRECISION ="1" SCALE ="0"/>
+            <TRANSFORMFIELD DATATYPE ="decimal" DEFAULTVALUE ="" DESCRIPTION ="" NAME ="calendar_month_num" PICTURETEXT ="" PORTTYPE ="INPUT/OUTPUT" PRECISION ="2" SCALE ="0"/>
+            <TRANSFORMFIELD DATATYPE ="string" DEFAULTVALUE ="" DESCRIPTION ="" NAME ="calendar_month_name" PICTURETEXT ="" PORTTYPE ="INPUT/OUTPUT" PRECISION ="9" SCALE ="0"/>
+            <TRANSFORMFIELD DATATYPE ="decimal" DEFAULTVALUE ="" DESCRIPTION ="" NAME ="date_key" PICTURETEXT ="" PORTTYPE ="INPUT/OUTPUT" PRECISION ="8" SCALE ="0"/>
+            <TRANSFORMFIELD DATATYPE ="integer" DEFAULTVALUE ="" DESCRIPTION ="" NAME ="LKB_date_key" PICTURETEXT ="" PORTTYPE ="INPUT/OUTPUT" PRECISION ="10" SCALE ="0"/>
+            <TABLEATTRIBUTE NAME ="Update Strategy Expression" VALUE ="IIF(ISNULL(LKB_date_key),DD_INSERT)"/>
+            <TABLEATTRIBUTE NAME ="Forward Rejected Rows" VALUE ="YES"/>
+            <TABLEATTRIBUTE NAME ="Tracing Level" VALUE ="Normal"/>
+        </TRANSFORMATION>
+        <INSTANCE DESCRIPTION ="" NAME ="dim_date" TRANSFORMATION_NAME ="dim_date" TRANSFORMATION_TYPE ="Target Definition" TYPE ="TARGET"/>
+        <INSTANCE DBDNAME ="FlatFile" DESCRIPTION ="" NAME ="dim_date_table" TRANSFORMATION_NAME ="dim_date_table" TRANSFORMATION_TYPE ="Source Definition" TYPE ="SOURCE"/>
+        <INSTANCE DESCRIPTION ="" NAME ="SQ_dim_date_table" REUSABLE ="NO" TRANSFORMATION_NAME ="SQ_dim_date_table" TRANSFORMATION_TYPE ="Source Qualifier" TYPE ="TRANSFORMATION">
+            <ASSOCIATED_SOURCE_INSTANCE NAME ="dim_date_table"/>
+        </INSTANCE>
+        <INSTANCE DESCRIPTION ="" NAME ="LKPTRANS" REUSABLE ="NO" TRANSFORMATION_NAME ="LKPTRANS" TRANSFORMATION_TYPE ="Lookup Procedure" TYPE ="TRANSFORMATION"/>
+        <INSTANCE DESCRIPTION ="" NAME ="UPDTRANS" REUSABLE ="NO" TRANSFORMATION_NAME ="UPDTRANS" TRANSFORMATION_TYPE ="Update Strategy" TYPE ="TRANSFORMATION"/>
+        <CONNECTOR FROMFIELD ="full_date" FROMINSTANCE ="UPDTRANS" FROMINSTANCETYPE ="Update Strategy" TOFIELD ="full_date" TOINSTANCE ="dim_date" TOINSTANCETYPE ="Target Definition"/>
+        <CONNECTOR FROMFIELD ="calendar_year" FROMINSTANCE ="UPDTRANS" FROMINSTANCETYPE ="Update Strategy" TOFIELD ="calendar_year" TOINSTANCE ="dim_date" TOINSTANCETYPE ="Target Definition"/>
+        <CONNECTOR FROMFIELD ="calendar_quarter" FROMINSTANCE ="UPDTRANS" FROMINSTANCETYPE ="Update Strategy" TOFIELD ="calendar_quarter" TOINSTANCE ="dim_date" TOINSTANCETYPE ="Target Definition"/>
+        <CONNECTOR FROMFIELD ="calendar_month_num" FROMINSTANCE ="UPDTRANS" FROMINSTANCETYPE ="Update Strategy" TOFIELD ="calendar_month_num" TOINSTANCE ="dim_date" TOINSTANCETYPE ="Target Definition"/>
+        <CONNECTOR FROMFIELD ="calendar_month_name" FROMINSTANCE ="UPDTRANS" FROMINSTANCETYPE ="Update Strategy" TOFIELD ="calendar_month_name" TOINSTANCE ="dim_date" TOINSTANCETYPE ="Target Definition"/>
+        <CONNECTOR FROMFIELD ="date_key" FROMINSTANCE ="UPDTRANS" FROMINSTANCETYPE ="Update Strategy" TOFIELD ="date_key" TOINSTANCE ="dim_date" TOINSTANCETYPE ="Target Definition"/>
+        <CONNECTOR FROMFIELD ="full_date" FROMINSTANCE ="dim_date_table" FROMINSTANCETYPE ="Source Definition" TOFIELD ="full_date" TOINSTANCE ="SQ_dim_date_table" TOINSTANCETYPE ="Source Qualifier"/>
+        <CONNECTOR FROMFIELD ="date_key" FROMINSTANCE ="dim_date_table" FROMINSTANCETYPE ="Source Definition" TOFIELD ="date_key" TOINSTANCE ="SQ_dim_date_table" TOINSTANCETYPE ="Source Qualifier"/>
+        <CONNECTOR FROMFIELD ="calendar_year" FROMINSTANCE ="dim_date_table" FROMINSTANCETYPE ="Source Definition" TOFIELD ="calendar_year" TOINSTANCE ="SQ_dim_date_table" TOINSTANCETYPE ="Source Qualifier"/>
+        <CONNECTOR FROMFIELD ="calendar_quarter" FROMINSTANCE ="dim_date_table" FROMINSTANCETYPE ="Source Definition" TOFIELD ="calendar_quarter" TOINSTANCE ="SQ_dim_date_table" TOINSTANCETYPE ="Source Qualifier"/>
+        <CONNECTOR FROMFIELD ="calendar_month_num" FROMINSTANCE ="dim_date_table" FROMINSTANCETYPE ="Source Definition" TOFIELD ="calendar_month_num" TOINSTANCE ="SQ_dim_date_table" TOINSTANCETYPE ="Source Qualifier"/>
+        <CONNECTOR FROMFIELD ="calendar_month_name" FROMINSTANCE ="dim_date_table" FROMINSTANCETYPE ="Source Definition" TOFIELD ="calendar_month_name" TOINSTANCE ="SQ_dim_date_table" TOINSTANCETYPE ="Source Qualifier"/>
+        <CONNECTOR FROMFIELD ="full_date" FROMINSTANCE ="SQ_dim_date_table" FROMINSTANCETYPE ="Source Qualifier" TOFIELD ="full_date1" TOINSTANCE ="LKPTRANS" TOINSTANCETYPE ="Lookup Procedure"/>
+        <CONNECTOR FROMFIELD ="full_date" FROMINSTANCE ="SQ_dim_date_table" FROMINSTANCETYPE ="Source Qualifier" TOFIELD ="full_date" TOINSTANCE ="UPDTRANS" TOINSTANCETYPE ="Update Strategy"/>
+        <CONNECTOR FROMFIELD ="calendar_year" FROMINSTANCE ="SQ_dim_date_table" FROMINSTANCETYPE ="Source Qualifier" TOFIELD ="calendar_year" TOINSTANCE ="UPDTRANS" TOINSTANCETYPE ="Update Strategy"/>
+        <CONNECTOR FROMFIELD ="calendar_quarter" FROMINSTANCE ="SQ_dim_date_table" FROMINSTANCETYPE ="Source Qualifier" TOFIELD ="calendar_quarter" TOINSTANCE ="UPDTRANS" TOINSTANCETYPE ="Update Strategy"/>
+        <CONNECTOR FROMFIELD ="calendar_month_num" FROMINSTANCE ="SQ_dim_date_table" FROMINSTANCETYPE ="Source Qualifier" TOFIELD ="calendar_month_num" TOINSTANCE ="UPDTRANS" TOINSTANCETYPE ="Update Strategy"/>
+        <CONNECTOR FROMFIELD ="calendar_month_name" FROMINSTANCE ="SQ_dim_date_table" FROMINSTANCETYPE ="Source Qualifier" TOFIELD ="calendar_month_name" TOINSTANCE ="UPDTRANS" TOINSTANCETYPE ="Update Strategy"/>
+        <CONNECTOR FROMFIELD ="date_key" FROMINSTANCE ="SQ_dim_date_table" FROMINSTANCETYPE ="Source Qualifier" TOFIELD ="date_key" TOINSTANCE ="UPDTRANS" TOINSTANCETYPE ="Update Strategy"/>
+        <CONNECTOR FROMFIELD ="date_key" FROMINSTANCE ="LKPTRANS" FROMINSTANCETYPE ="Lookup Procedure" TOFIELD ="LKB_date_key" TOINSTANCE ="UPDTRANS" TOINSTANCETYPE ="Update Strategy"/>
+        <TARGETLOADORDER ORDER ="1" TARGETINSTANCE ="dim_date"/>
+        <ERPINFO/>
+    </MAPPING>
+</FOLDER>
+</REPOSITORY>
+</POWERMART>
