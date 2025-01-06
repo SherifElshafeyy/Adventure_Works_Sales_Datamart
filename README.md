@@ -46,19 +46,16 @@ A **datamart** is a subset of a data warehouse, focused on a specific business f
 
 The datamart follows a **star schema** design, with one central fact table (`Fact_Sales`) and multiple dimension tables.
 
-### AdventureWorks OLTP Database Schema
 
-Below is the schema diagram for the **AdventureWorks OLTP database**:
 
-![AdventureWorks OLTP Schema](Images\Adventure_works_Database_Schema.gif)  
-*Figure 1: AdventureWorks OLTP Database Schema*
+
 
 ### Data Warehouse (DWH) Schema
 
 Below is the schema diagram for the **Data Warehouse (DWH)**:
 
 ![DWH Schema](Images\Sales_Datamart_Schema.png)  
-*Figure 2: Data Warehouse (DWH) Schema*
+*Figure 1: Data Warehouse (DWH) Schema*
 
 ### Dimension Tables
 
@@ -110,6 +107,11 @@ The project includes several mappings to load data into the dimension and fact t
   - **Router Transformation**: Routes rows for insertion or update based on changes detected using an **MD5 hash**.
   - **Update Strategy Transformation**: Updates existing records and inserts new records.
 
+![M_Dim_Customer Mapping](Images\M_Dim_Customer.png)  
+*Figure 2: M_Dim_Customer Mapping Diagram*
+
+---
+
 ### M_Dim_Territory
 
 - **Purpose**: Loads data into the `dim_Territory` table.
@@ -118,6 +120,11 @@ The project includes several mappings to load data into the dimension and fact t
   - **Lookup Transformation (LKP_Country)**: Enriches territory data with country and region information.
   - **Expression Transformation (EXPTRANS)**: Prepares data for loading.
   - **Update Strategy Transformation (UPDTRANS)**: Determines whether to insert or reject records.
+
+![M_Dim_Territory Mapping](Images\M_Dim_Territiry.png)  
+*Figure 3: M_Dim_Territory Mapping Diagram*
+
+---
 
 ### M_Dim_Product
 
@@ -128,6 +135,11 @@ The project includes several mappings to load data into the dimension and fact t
   - **Lookup Transformation**: Fetches product model descriptions and category information.
   - **Update Strategy Transformation**: Implements **SCD Type 2 logic** to track historical changes.
 
+![M_Dim_Product Mapping](Images\M_Dim_Product.png)  
+*Figure 4: M_Dim_Product Mapping Diagram*
+
+---
+
 ### M_Dim_Date
 
 - **Purpose**: Loads data into the `dim_Date` table.
@@ -137,6 +149,11 @@ The project includes several mappings to load data into the dimension and fact t
   - **Lookup Transformation**: Checks if a date already exists in `dim_Date`.
   - **Update Strategy Transformation**: Inserts new records if they do not already exist.
 
+![M_Dim_Date Mapping](Images\M_Dim_Date.png)  
+*Figure 5: M_Dim_Date Mapping Diagram*
+
+---
+
 ### M_Fact_Sales
 
 - **Purpose**: Loads data into the `Fact_Sales` table.
@@ -145,6 +162,9 @@ The project includes several mappings to load data into the dimension and fact t
   - **Joiner Transformation**: Combines data from `SalesOrderHeader` and `SalesOrderDetail` on `SalesOrderID`.
   - **Lookup Transformation**: Fetches surrogate keys from dimension tables (`dim_Customer`, `dim_Territory`, `dim_Product`, `dim_Date`).
   - **Expression Transformation**: Calculates derived facts (e.g., `extended_sales`, `extended_cost`).
+
+![M_Fact_Sales Mapping](Images\M_Fact_Slaes.png)  
+*Figure 6: M_Fact_Sales Mapping Diagram*
 
 ---
 
@@ -158,8 +178,6 @@ The project includes several mappings to load data into the dimension and fact t
    - **Challenge**: Tracking historical changes in dimension tables.
    - **Solution**: Used **MD5 hash comparison** to detect changes and applied **Update Strategy Transformation** to handle inserts and updates.
 
-
-
 ---
 
 ## 7. Future Enhancements
@@ -170,8 +188,6 @@ The project includes several mappings to load data into the dimension and fact t
 2. **Enhance Reporting**:
    - Create additional reports and dashboards using tools like **Power BI** or **Tableau**.
 
-
-
 ---
 
 ## 8. Conclusion
@@ -179,5 +195,3 @@ The project includes several mappings to load data into the dimension and fact t
 The **AdventureWorks Sales Datamart** project successfully transforms OLTP data into a dimensional model optimized for sales analysis. The ETL process, implemented using **Informatica PowerCenter**, ensures accurate and efficient data loading. This documentation provides a comprehensive overview of the schema design, ETL process, mappings, challenges, and future enhancements.
 
 ---
-
-
