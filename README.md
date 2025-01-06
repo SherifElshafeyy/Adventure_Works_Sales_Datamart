@@ -46,15 +46,11 @@ A **datamart** is a subset of a data warehouse, focused on a specific business f
 
 The datamart follows a **star schema** design, with one central fact table (`Fact_Sales`) and multiple dimension tables.
 
-
-
-
-
 ### Data Warehouse (DWH) Schema
 
 Below is the schema diagram for the **Data Warehouse (DWH)**:
 
-![DWH Schema](Images\Sales_Datamart_Schema.png)  
+![DWH Schema](Images/Sales_Datamart_Schema.png)  
 *Figure 1: Data Warehouse (DWH) Schema*
 
 ### Dimension Tables
@@ -107,7 +103,7 @@ The project includes several mappings to load data into the dimension and fact t
   - **Router Transformation**: Routes rows for insertion or update based on changes detected using an **MD5 hash**.
   - **Update Strategy Transformation**: Updates existing records and inserts new records.
 
-![M_Dim_Customer Mapping](Images\M_Dim_Customer.png)  
+![M_Dim_Customer Mapping](Images/M_Dim_Customer.png)  
 *Figure 2: M_Dim_Customer Mapping Diagram*
 
 ---
@@ -121,7 +117,7 @@ The project includes several mappings to load data into the dimension and fact t
   - **Expression Transformation (EXPTRANS)**: Prepares data for loading.
   - **Update Strategy Transformation (UPDTRANS)**: Determines whether to insert or reject records.
 
-![M_Dim_Territory Mapping](Images\M_Dim_Territiry.png)  
+![M_Dim_Territory Mapping](Images/M_Dim_Territiry.png)  
 *Figure 3: M_Dim_Territory Mapping Diagram*
 
 ---
@@ -135,7 +131,7 @@ The project includes several mappings to load data into the dimension and fact t
   - **Lookup Transformation**: Fetches product model descriptions and category information.
   - **Update Strategy Transformation**: Implements **SCD Type 2 logic** to track historical changes.
 
-![M_Dim_Product Mapping](Images\M_Dim_Product.png)  
+![M_Dim_Product Mapping](Images/M_Dim_Product.png)  
 *Figure 4: M_Dim_Product Mapping Diagram*
 
 ---
@@ -149,7 +145,7 @@ The project includes several mappings to load data into the dimension and fact t
   - **Lookup Transformation**: Checks if a date already exists in `dim_Date`.
   - **Update Strategy Transformation**: Inserts new records if they do not already exist.
 
-![M_Dim_Date Mapping](Images\M_Dim_Date.png)  
+![M_Dim_Date Mapping](Images/M_Dim_Date.png)  
 *Figure 5: M_Dim_Date Mapping Diagram*
 
 ---
@@ -163,7 +159,7 @@ The project includes several mappings to load data into the dimension and fact t
   - **Lookup Transformation**: Fetches surrogate keys from dimension tables (`dim_Customer`, `dim_Territory`, `dim_Product`, `dim_Date`).
   - **Expression Transformation**: Calculates derived facts (e.g., `extended_sales`, `extended_cost`).
 
-![M_Fact_Sales Mapping](Images\M_Fact_Slaes.png)  
+![M_Fact_Sales Mapping](Images/M_Fact_Slaes.png)  
 *Figure 6: M_Fact_Sales Mapping Diagram*
 
 ---
