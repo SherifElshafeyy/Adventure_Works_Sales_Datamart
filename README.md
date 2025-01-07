@@ -1,4 +1,4 @@
-# Project Documentation: AdventureWorks Sales Datamart
+#  AdventureWorks Sales Datamart (Converting OLTP System Into OLAP sysytem)
 
 ---
 
@@ -10,7 +10,32 @@ The ETL process is implemented using **Informatica PowerCenter**, ensuring accur
 
 ---
 
-## 2. Why Create a Datamart?
+## 2. Source Tables from OLTP Database
+
+The **AdventureWorks OLTP database** is the source system for this project. Below are the key source tables used in the ETL process:
+
+### **Source Tables**
+
+| **Table**                                      | **Description**                                                                 | **Key Fields**                                                                 |
+|------------------------------------------------|---------------------------------------------------------------------------------|-------------------------------------------------------------------------------|
+| `Person.Person`                                | Stores customer and employee information.                                       | `BusinessEntityID`, `FirstName`, `LastName`, `EmailPromotion`, etc.           |
+| `Person.PersonPhone`                           | Stores phone numbers for customers and employees.                               | `BusinessEntityID`, `PhoneNumber`, `PhoneNumberTypeID`, etc.                  |
+| `Person.BusinessEntity`                        | Represents a business entity (e.g., customer, vendor, employee).                | `BusinessEntityID`, `rowguid`, `ModifiedDate`, etc.                           |
+| `Person.BusinessEntityAddress`                 | Links business entities to their addresses.                                     | `BusinessEntityID`, `AddressID`, `AddressTypeID`, etc.                        |
+| `Production.Product`                           | Contains product details.                                                       | `ProductID`, `Name`, `ProductNumber`, `Color`, `StandardCost`, etc.           |
+| `Production.ProductCategory`                   | Stores category information for products.                                       | `ProductCategoryID`, `Name`, `rowguid`, `ModifiedDate`, etc.                  |
+| `Production.ProductDescription`                | Stores descriptions for products.                                               | `ProductDescriptionID`, `Description`, `rowguid`, `ModifiedDate`, etc.        |
+| `Production.ProductModel`                      | Stores model information for products.                                          | `ProductModelID`, `Name`, `CatalogDescription`, `rowguid`, `ModifiedDate`, etc.|
+| `Production.ProductModelProductDescriptionCulture` | Links product models to their descriptions and cultures.                     | `ProductModelID`, `ProductDescriptionID`, `CultureID`, etc.                   |
+| `Production.ProductSubcategory`                | Stores subcategory information for products.                                    | `ProductSubcategoryID`, `ProductCategoryID`, `Name`, `rowguid`, etc.          |
+| `Sales.Customer`                               | Links customers to their sales orders.                                          | `CustomerID`, `PersonID`, `StoreID`, `TerritoryID`, etc.                      |
+| `Sales.SalesOrderDetail`                       | Contains line-item details for sales orders.                                    | `SalesOrderID`, `ProductID`, `OrderQty`, `UnitPrice`, `LineTotal`, etc.       |
+| `Sales.SalesOrderHeader`                       | Contains header information for sales orders.                                   | `SalesOrderID`, `OrderDate`, `CustomerID`, `TerritoryID`, `TotalDue`, etc.    |
+| `Sales.SalesTerritory`                         | Stores sales territory information.                                             | `TerritoryID`, `Name`, `CountryRegionCode`, `Group`, etc. 
+
+---
+
+## 3. Why Create a Datamart?
 
 A **datamart** is a subset of a data warehouse, focused on a specific business function (e.g., sales, finance, marketing). It is designed to support analytical queries and reporting, unlike an **OLTP (Online Transaction Processing)** system, which is optimized for transactional operations.
 
@@ -42,7 +67,7 @@ A **datamart** is a subset of a data warehouse, focused on a specific business f
 
 ---
 
-## 3. Schema Design
+## 4. Schema Design
 
 The datamart follows a **star schema** design, with one central fact table (`Fact_Sales`) and multiple dimension tables.
 
@@ -70,7 +95,7 @@ Below is the schema diagram for the **Data Warehouse (DWH)**:
 
 ---
 
-## 4. ETL Process
+## 5. ETL Process
 
 The ETL process extracts data from the **AdventureWorks OLTP database**, transforms it using **Informatica PowerCenter**, and loads it into the datamart.
 
@@ -89,7 +114,7 @@ The ETL process extracts data from the **AdventureWorks OLTP database**, transfo
 
 ---
 
-## 5. Mappings
+## 6. Mappings
 
 The project includes several mappings to load data into the dimension and fact tables. Below are the key mappings:
 
@@ -164,7 +189,7 @@ The project includes several mappings to load data into the dimension and fact t
 
 ---
 
-## 6. Challenges and Solutions
+## 7. Challenges and Solutions
 
 1. **Incremental Loading**:
    - **Challenge**: Loading only new or updated records from large source tables.
@@ -176,7 +201,7 @@ The project includes several mappings to load data into the dimension and fact t
 
 ---
 
-## 7. Future Enhancements
+## 8. Future Enhancements
 
 1. **Add More Dimensions**:
    - Include additional dimensions (e.g., `dim_Employee`, `dim_Promotion`) to support more granular analysis.
@@ -186,7 +211,7 @@ The project includes several mappings to load data into the dimension and fact t
 
 ---
 
-## 8. Conclusion
+## 9. Conclusion
 
 The **AdventureWorks Sales Datamart** project successfully transforms OLTP data into a dimensional model optimized for sales analysis. The ETL process, implemented using **Informatica PowerCenter**, ensures accurate and efficient data loading. This documentation provides a comprehensive overview of the schema design, ETL process, mappings, challenges, and future enhancements.
 
